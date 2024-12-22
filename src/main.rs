@@ -18,7 +18,7 @@ fn code_snap(s: &str) -> Result<(), Box<dyn Error>> {
         .build()?
         .create_snapshot()?
         .png_data()?
-        .save("./snap.png")?;
+        .save("./output/snap.png")?;
     Ok(())
 }
 fn main() -> Result<(), Box<dyn Error>> {
@@ -53,7 +53,7 @@ fn code_snap(s: &str) -> Result<(), Box<dyn Error>> {
         .build()?
         .create_snapshot()?
         .png_data()?
-        .save("./snap.png")?;
+        .save("./output/snap.png")?;
     Ok(())
 }
 "#)}
