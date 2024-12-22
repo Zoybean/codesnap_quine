@@ -1,7 +1,8 @@
+
 use codesnap::config::{CodeBuilder, CodeSnap};
 use std::error::Error;
 
-fn quot(s: &str) -> String {
+fn quote(s: &str) -> String {
     format!("r#{0}{s}{0}#", '"')
 }
 fn embed(defs: &str, body: &str) -> String {
@@ -20,21 +21,19 @@ fn main() -> Result<(), Box<dyn Error>> {
     (|quine: &str, def: &str| {
         out(&embed(
             def,
-            &[quine, "(", &quot(quine), ", ", &quot(def), ")"].concat(),
+            &[quine, "(", &quote(quine), ", ", &quote(def), ")"].concat(),
         ))
-    })(
-        r#"
+    })(r#"
     (|quine: &str, def: &str| {
         out(&embed(
             def,
-            &[quine, "(", &quot(quine), ", ", &quot(def), ")"].concat(),
+            &[quine, "(", &quote(quine), ", ", &quote(def), ")"].concat(),
         ))
-    })"#,
-        r#"
+    })"#, r#"
 use codesnap::config::{CodeBuilder, CodeSnap};
 use std::error::Error;
 
-fn quot(s: &str) -> String {
+fn quote(s: &str) -> String {
     format!("r#{0}{s}{0}#", '"')
 }
 fn embed(defs: &str, body: &str) -> String {
@@ -49,6 +48,4 @@ fn out(s: &str) -> Result<(), Box<dyn Error>> {
         .save("./snap.png")?;
     Ok(())
 }
-"#,
-    )
-}
+"#)}
