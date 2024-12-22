@@ -5,8 +5,8 @@ use std::error::Error;
 fn quote(s: &str) -> String {
     format!("r#{0}{s}{0}#", '"')
 }
-fn embed(defs: &str, body: &str) -> String {
-    format!("{defs}fn main() -> Result<(), Box<dyn Error>> {{{body}}}")
+fn embed(items: &str, body: &str) -> String {
+    format!("{items}fn main() -> Result<(), Box<dyn Error>> {{{body}}}")
 }
 fn print(s: &str) -> Result<(), Box<dyn Error>> {
     println!("{s}");
@@ -40,8 +40,8 @@ use std::error::Error;
 fn quote(s: &str) -> String {
     format!("r#{0}{s}{0}#", '"')
 }
-fn embed(defs: &str, body: &str) -> String {
-    format!("{defs}fn main() -> Result<(), Box<dyn Error>> {{{body}}}")
+fn embed(items: &str, body: &str) -> String {
+    format!("{items}fn main() -> Result<(), Box<dyn Error>> {{{body}}}")
 }
 fn print(s: &str) -> Result<(), Box<dyn Error>> {
     println!("{s}");
