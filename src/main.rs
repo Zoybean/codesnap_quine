@@ -8,7 +8,11 @@ fn quote(s: &str) -> String {
 fn embed(defs: &str, body: &str) -> String {
     format!("{defs}fn main() -> Result<(), Box<dyn Error>> {{{body}}}")
 }
-fn out(s: &str) -> Result<(), Box<dyn Error>> {
+fn print(s: &str) -> Result<(), Box<dyn Error>> {
+    println!("{s}");
+    Ok(())
+}
+fn code_snap(s: &str) -> Result<(), Box<dyn Error>> {
     CodeSnap::default()
         .code(CodeBuilder::default().language("rust").content(s).build()?)
         .build()?
@@ -19,13 +23,13 @@ fn out(s: &str) -> Result<(), Box<dyn Error>> {
 }
 fn main() -> Result<(), Box<dyn Error>> {
     (|quine: &str, def: &str| {
-        out(&embed(
+        code_snap(&embed(
             def,
             &[quine, "(", &quote(quine), ", ", &quote(def), ")"].concat(),
         ))
     })(r#"
     (|quine: &str, def: &str| {
-        out(&embed(
+        code_snap(&embed(
             def,
             &[quine, "(", &quote(quine), ", ", &quote(def), ")"].concat(),
         ))
@@ -39,7 +43,11 @@ fn quote(s: &str) -> String {
 fn embed(defs: &str, body: &str) -> String {
     format!("{defs}fn main() -> Result<(), Box<dyn Error>> {{{body}}}")
 }
-fn out(s: &str) -> Result<(), Box<dyn Error>> {
+fn print(s: &str) -> Result<(), Box<dyn Error>> {
+    println!("{s}");
+    Ok(())
+}
+fn code_snap(s: &str) -> Result<(), Box<dyn Error>> {
     CodeSnap::default()
         .code(CodeBuilder::default().language("rust").content(s).build()?)
         .build()?
